@@ -141,7 +141,7 @@ http://localhost:5000/ap1/v1/movies/(id do filme)
 </details>
 <hr>
 
-## Possiveis melhorias
+## Possíveis melhorias
 - Entry Points Post e Delete para finalizar o CRUD
 - Containerização da API
 - Deploy da aplicação
