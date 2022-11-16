@@ -46,6 +46,11 @@ prod_access_database=(nome da base de dados)
 npm install
 ```
 
+<b>Subir container docker:</b>
+```
+docker-compose up -d
+```
+
 <b>Rodar as migrations:</b>
 
 ```
