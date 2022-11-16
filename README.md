@@ -56,17 +56,17 @@ docker-compose up -d
 ```
 npx knex migrate:latest
 ```
+	
+<b>Executar a aplicação:</b>
+
+```
+npm start
+```
 
 <b>Rodar as seed:</b>
 
 ```
 npx knex seed:run
-```
-
-<b>Executar a aplicação:</b>
-
-```
-npm start
 ```
 
 ### Rodando o linter (opcional)
