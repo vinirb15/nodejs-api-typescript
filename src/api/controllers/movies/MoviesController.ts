@@ -66,7 +66,7 @@ export class MoviesController {
 
   // POST
   async fillMovies (req: Request, res: Response) {
-    const teste: Movies = await axios.get('https://ghibliapi.herokuapp.com/films').then(
+    const movies: Movies = await axios.get('https://ghibliapi.herokuapp.com/films').then(
       response => response.data.map((movie: Movie) => ({
         id: movie.id,
         title: movie.title,
@@ -79,9 +79,9 @@ export class MoviesController {
       await knex('movies').del()
     )
 
-    await knex('movies').insert(teste)
+    await knex('movies').insert(movies)
 
-    res.send(teste)
+    res.send(movies)
   }
   // PUT
   // DELETE
