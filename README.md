@@ -87,7 +87,7 @@ npx eslint --ext .ts ./
 [![Generic badge](https://img.shields.io/badge/Request-GET-gree.svg)]('#')
 
 ```
-http://localhost:5000/ap1/v1/movies?&limit=2&offset=2
+http://localhost:5000/api/v1/movies?&limit=2&offset=2
 ```
 
 [![Ask Me Anything !](https://img.shields.io/badge/Response-ok-1abc9c.svg)](https://GitHub.com/Naereen/ama)
@@ -126,7 +126,7 @@ http://localhost:5000/ap1/v1/movies?&limit=2&offset=2
 [![Generic badge](https://img.shields.io/badge/Request-GET-blue.svg)](https://shields.io/)
 
 ```
-http://localhost:5000/ap1/v1/movies/(id do filme)
+http://localhost:5000/api/v1/movies/(id do filme)
 ```
 
 [![Ask Me Anything !](https://img.shields.io/badge/Response-ok-1abc9c.svg)](https://GitHub.com/Naereen/ama)
