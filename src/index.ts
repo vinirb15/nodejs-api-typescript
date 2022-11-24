@@ -1,10 +1,19 @@
 import 'dotenv/config'
 import express, { Request, Response, Application } from 'express'
 import routes from './routes'
+import cors from 'cors'
 
 const app: Application = express()
 
 app.use(express.json())
+
+app.use(
+  cors({
+    origin: [String(process.env.REACT_ENV)],
+    methods: 'GET',
+    credentials: true
+  })
+)
 
 // v1 routes
 app.use('/api/v1', routes)
