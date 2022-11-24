@@ -10,13 +10,11 @@ interface Movie {
   rt_score: string
 }
 
-interface Movies extends Array<Movie> {}
-
 export class MoviesModel {
   // GET
   async list (offset: number, limit: number) {
     try {
-      const movies: Movies = await knex('movies')
+      const movies: Movie[] = await knex('movies')
         .select(
           'id',
           'title',
@@ -65,7 +63,7 @@ export class MoviesModel {
   }
 
   async getExternalMovies () {
-    const movies: Movies = await axios({
+    const movies: Movie[] = await axios({
       baseURL: 'https://ghibliapi.herokuapp.com/',
       url: '/films',
       responseType: 'json',

@@ -10,10 +10,8 @@ interface Movie {
   rt_score: string
 }
 
-interface Movies extends Array<Movie> {}
-
 interface MoviesList {
-  movies: Movies
+  movies: Movie[]
   total: Number
 }
 
