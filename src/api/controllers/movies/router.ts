@@ -3,10 +3,9 @@ import controller from './MoviesController'
 
 export default express
   .Router()
-// GET
-  .get('/', controller.index)
+  // GET
+  .get('/', controller.list)
   .get('/:id', controller.getByid)
   // POST
-  .post('/', controller.fillMovies)
-// PUT
-// DELETE
+  // PUT
+  // DELETE

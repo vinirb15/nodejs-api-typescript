@@ -1,6 +1,5 @@
-import knex from '../../../database/dbconfig'
 import { Request, Response } from 'express'
-import axios from 'axios'
+import MoviesModel from '../../models/MoviesModel'
 
 interface Movie {
   id: string
@@ -13,50 +12,27 @@ interface Movie {
 
 interface Movies extends Array<Movie> {}
 
+interface MoviesList {
+  movies: Movies
+  total: Number
+}
+
 export class MoviesController {
   // GET
-  async index (req: Request, res: Response) {
+  async list (req: Request, res: Response) {
     const { offset = 1, limit = 10 } = req.query
-
     try {
-      const movies = await knex('movies')
-        .select(
-          'id',
-          'title',
-          'original_title',
-          'description',
-          'score',
-          'release_date')
-        .orderBy('release_date', 'asc')
-        .orderBy('title', 'asc')
-        .offset((Number(offset) - 1) * Number(limit))
-        .limit(Number(limit))
-
-      const moviesTotal = await knex('movies')
-        .select('id')
-
-      return res.send({
-        movies,
-        total: moviesTotal.length
-      })
+      const movies: MoviesList = await MoviesModel.list(Number(offset), Number(limit))
+      return res.send(movies)
     } catch (error) {
-      return res.status(404).send({ error: 'Não encontrado' })
+      return res.status(404).send(error)
     }
   }
 
   async getByid (req: Request, res: Response) {
     const { id } = req.params
     try {
-      const movie = await knex('movies')
-        .select(
-          'id',
-          'title',
-          'original_title',
-          'description',
-          'score',
-          'release_date')
-        .where({ id })
-        .first()
+      const movie: Movie = await MoviesModel.getByid(id)
 
       return res.send(movie)
     } catch (error) {
@@ -65,24 +41,6 @@ export class MoviesController {
   }
 
   // POST
-  async fillMovies (req: Request, res: Response) {
-    const movies: Movies = await axios.get('https://ghibliapi.herokuapp.com/films').then(
-      response => response.data.map((movie: Movie) => ({
-        id: movie.id,
-        title: movie.title,
-        original_title: movie.original_title,
-        description: movie.description,
-        release_date: movie.release_date,
-        score: movie.rt_score
-      }))
-    ).catch(
-      await knex('movies').del()
-    )
-
-    await knex('movies').insert(movies)
-
-    res.send(movies)
-  }
   // PUT
   // DELETE
 }
